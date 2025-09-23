@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Aura</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">Aura</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="form.html">Sign Up</a></li>
+        <li><a href="payment.html">Checkout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="form-section">
+    <h2>Payment Details</h2>
+    <form onsubmit="event.preventDefault(); window.location.href='thankyou.html';">
+      <input type="text" placeholder="Full Name" required>
+      <input type="text" placeholder="Address" required>
+      <input type="text" placeholder="Card Number" required>
+      <input type="text" placeholder="Expiry Date" required>
+      <input type="text" placeholder="CVV" required>
+      <button type="submit">Pay Now</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Aura Clothing</p>
+  </footer>
+</body>
+</html>
