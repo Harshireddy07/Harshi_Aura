@@ -3,43 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up - Aura</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Your Cart - Aura</title>
+  <style>
+    body { font-family:Poppins,sans-serif; margin:0; background:#fdfdfd; color:#333; }
+    header { background:#fff; padding:20px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
+    h1 { margin:0; color:#ff4da6; }
+    .container { max-width:500px; margin:40px auto; background:#fff; padding:30px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+    .product { margin-bottom:20px; padding:15px; border:1px solid #ddd; border-radius:8px; }
+    .product h3 { margin:0; color:#ff4da6; }
+    form { display:flex; flex-direction:column; gap:15px; }
+    input { padding:12px; border:1px solid #ccc; border-radius:8px; }
+    button { background:#ff4da6; color:#fff; border:none; padding:12px; border-radius:25px; cursor:pointer; }
+    button:hover { background:#ff3399; }
+    footer { text-align:center; padding:20px; background:#333; color:#fff; margin-top:40px; }
+  </style>
 </head>
 <body>
-  <header>
-    <div class="logo">Aura</div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="form.html">Sign Up</a></li>
-        <li><a href="payment.html">Checkout</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <section class="form-section">
-    <h2>Create Account</h2>
-    <form onsubmit="event.preventDefault(); alert('Account created!');">
-      <input type="text" placeholder="Full Name" required>
-      <input type="email" placeholder="Email" required>
-      <input type="password" placeholder="Password" required>
-      <button type="submit">Sign Up</button>
+  <header><h1>Your Cart</h1></header>
+  <div class="container">
+    <div class="product">
+      <h3 id="productName"></h3>
+      <p id="productPrice"></p>
+    </div>
+    <form onsubmit="proceed(event)">
+      <input type="text" id="name" placeholder="Full Name" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="text" id="address" placeholder="Address" required>
+      <button type="submit">Proceed to Payment</button>
     </form>
-  </section>
-
-  <section id="contact" class="form-section">
-    <h2>Contact Us</h2>
-    <form onsubmit="event.preventDefault(); alert('Message sent!');">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea placeholder="Message"></textarea>
-      <button type="submit">Send</button>
-    </form>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Aura Clothing</p>
-  </footer>
+  </div>
+  <footer>&copy; 2025 Aura Clothing</footer>
+  <script>
+    document.getElementById("productName").innerText = localStorage.getItem("product");
+    document.getElementById("productPrice").innerText = localStorage.getItem("price");
+    function proceed(e){
+      e.preventDefault();
+      localStorage.setItem("customer", document.getElementById("name").value);
+      window.location.href="payment.html";
+    }
+  </script>
 </body>
 </html>
