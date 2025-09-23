@@ -1,74 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thank You - Aura</title>
-  <style>
-    body {
-      font-family: Poppins, sans-serif;
-      margin: 0;
-      background: #111;
-      color: #eee;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
-    }
-    h1 {
-      color: #ff4da6;
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-    p {
-      font-size: 1.2rem;
-      color: #ccc;
-    }
-    button {
-      margin-top: 20px;
-      background: #ff4da6;
-      color: #fff;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: 0.3s;
-      font-size: 1rem;
-    }
-    button:hover {
-      background: #ff3399;
-    }
-    /* Floating sparkles animation */
-    .sparkle {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: #ff4da6;
-      border-radius: 50%;
-      animation: float 4s linear infinite;
-      opacity: 0.7;
-    }
-    @keyframes float {
-      0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.7; }
-      50% { transform: translateY(-200px) translateX(50px) scale(1.5); opacity: 1; }
-      100% { transform: translateY(-400px) translateX(-50px) scale(0.5); opacity: 0; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You - Aura</title>
+<style>
+body{font-family:Poppins,sans-serif;margin:0;background:#111;color:#eee;display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;overflow:hidden;position:relative;}
+h1{color:#ff4da6;font-size:2.5rem;margin-bottom:10px;}
+p{font-size:1.2rem;color:#ccc;text-align:center;}
+button{margin-top:20px;background:#ff4da6;color:#fff;border:none;padding:12px 25px;border-radius:25px;cursor:pointer;transition:0.3s;font-size:1rem;}
+button:hover{background:#ff3399;}
+.sparkle{position:absolute;width:10px;height:10px;background:#ff4da6;border-radius:50%;animation:float 4s linear infinite;opacity:0.7;}
+@keyframes float{0%{transform:translateY(0) translateX(0) scale(1);opacity:0.7;}50%{transform:translateY(-200px) translateX(50px) scale(1.5);opacity:1;}100%{transform:translateY(-400px) translateX(-50px) scale(0.5);opacity:0;}}
+</style>
 </head>
 <body>
-  <h1>🎉 Thank You for Your Purchase!</h1>
-  <p>Your order has been placed successfully.</p>
-  <button onclick="window.location.href='index.html'">Back to Home</button>
+<h1>🎉 Thank You for Your Purchase!</h1>
+<p>Your order has been placed successfully.</p>
+<button onclick="window.location.href='index.html'">Back to Home</button>
 
-  <!-- Floating sparkles -->
-  <div class="sparkle" style="left:20%; animation-delay:0s;"></div>
-  <div class="sparkle" style="left:40%; animation-delay:1s;"></div>
-  <div class="sparkle" style="left:60%; animation-delay:2s;"></div>
-  <div class="sparkle" style="left:80%; animation-delay:3s;"></div>
-  <div class="sparkle" style="left:30%; animation-delay:1.5s;"></div>
-  <div class="sparkle" style="left:70%; animation-delay:2.5s;"></div>
+<!-- Floating sparkles -->
+<div class="sparkle" style="left:20%; animation-delay:0s;"></div>
+<div class="sparkle" style="left:40%; animation-delay:1s;"></div>
+<div class="sparkle" style="left:60%; animation-delay:2s;"></div>
+<div class="sparkle" style="left:80%; animation-delay:3s;"></div>
+<div class="sparkle" style="left:30%; animation-delay:1.5s;"></div>
+<div class="sparkle" style="left:70%; animation-delay:2.5s;"></div>
 </body>
 </html>
