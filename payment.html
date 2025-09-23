@@ -5,35 +5,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Payment - Aura</title>
 <style>
-body{font-family:Poppins,sans-serif;margin:0;background:#111;color:#eee;}
-header{background:#000;padding:20px;text-align:center;box-shadow:0 2px 5px rgba(255,77,166,0.3);}
-h1{margin:0;color:#ff4da6;}
-.container{max-width:400px;margin:40px auto;background:#1a1a1a;padding:30px;border-radius:10px;box-shadow:0 2px 8px rgba(255,77,166,0.3);}
-form{display:flex;flex-direction:column;gap:15px;}
-input{padding:12px;border:1px solid #555;border-radius:8px;background:#222;color:#eee;}
-input::placeholder{color:#aaa;}
-button{background:#ff4da6;color:#fff;border:none;padding:12px;border-radius:25px;cursor:pointer;transition:0.3s;}
-button:hover{background:#ff3399;}
-footer{text-align:center;padding:20px;background:#000;color:#999;margin-top:40px;}
+body {font-family:Poppins,sans-serif; margin:0; background:#111; color:#eee;}
+header {background:#000; padding:20px; text-align:center; box-shadow:0 2px 5px rgba(255,77,166,0.3);}
+header h1 {margin:0; color:#ff4da6;}
+.container {max-width:400px; margin:50px auto; background:#1a1a1a; padding:30px; border-radius:10px; box-shadow:0 2px 8px rgba(255,77,166,0.3);}
+form {display:flex; flex-direction:column; gap:15px;}
+input {padding:12px; border:1px solid #333; border-radius:8px; background:#222; color:#eee;}
+input::placeholder {color:#bbb;}
+button {background:#ff4da6; color:#fff; border:none; padding:12px; border-radius:25px; cursor:pointer; transition:0.3s;}
+button:hover {background:#ff3399;}
+footer {text-align:center; padding:20px; background:#000; color:#999; margin-top:40px;}
 </style>
 </head>
 <body>
 <header><h1>Payment</h1></header>
 <div class="container">
-<form onsubmit="pay(event)">
-  <input type="text" placeholder="Card Number" required>
-  <input type="text" placeholder="Expiry Date (MM/YY)" required>
-  <input type="text" placeholder="CVV" required>
-  <button type="submit">Proceed to Pay</button>
-</form>
+  <form id="paymentForm">
+    <input type="text" placeholder="Card Number" required>
+    <input type="text" placeholder="Expiry Date (MM/YY)" required>
+    <input type="text" placeholder="CVV" required>
+    <button type="submit">Proceed to Pay</button>
+  </form>
 </div>
 <footer>&copy; 2025 Aura Clothing</footer>
 
 <script>
-function pay(e){
-  e.preventDefault();
-  window.location.href='thankyou.html';
-}
+document.getElementById('paymentForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    // Clear the cart after payment
+    localStorage.removeItem('cart');
+    window.location.href = 'thankyou.html';
+});
 </script>
 </body>
 </html>
