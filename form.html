@@ -5,17 +5,79 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your Cart - Aura</title>
   <style>
-    body { font-family:Poppins,sans-serif; margin:0; background:#fdfdfd; color:#333; }
-    header { background:#fff; padding:20px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
-    h1 { margin:0; color:#ff4da6; }
-    .container { max-width:500px; margin:40px auto; background:#fff; padding:30px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
-    .product { margin-bottom:20px; padding:15px; border:1px solid #ddd; border-radius:8px; }
-    .product h3 { margin:0; color:#ff4da6; }
-    form { display:flex; flex-direction:column; gap:15px; }
-    input { padding:12px; border:1px solid #ccc; border-radius:8px; }
-    button { background:#ff4da6; color:#fff; border:none; padding:12px; border-radius:25px; cursor:pointer; }
-    button:hover { background:#ff3399; }
-    footer { text-align:center; padding:20px; background:#333; color:#fff; margin-top:40px; }
+    body { 
+      font-family:Poppins,sans-serif; 
+      margin:0; 
+      background:#111; 
+      color:#eee; 
+    }
+    header { 
+      background:#000; 
+      padding:20px; 
+      text-align:center; 
+      box-shadow:0 2px 5px rgba(255,77,166,0.3); 
+    }
+    h1 { 
+      margin:0; 
+      color:#ff4da6; 
+    }
+    .container { 
+      max-width:500px; 
+      margin:40px auto; 
+      background:#1a1a1a; 
+      padding:30px; 
+      border-radius:10px; 
+      box-shadow:0 2px 8px rgba(255,77,166,0.3); 
+    }
+    .product { 
+      margin-bottom:20px; 
+      padding:15px; 
+      border:1px solid #333; 
+      border-radius:8px; 
+      background:#000; 
+    }
+    .product h3 { 
+      margin:0; 
+      color:#ff4da6; 
+    }
+    .product p { 
+      margin:5px 0 0; 
+      color:#ccc; 
+    }
+    form { 
+      display:flex; 
+      flex-direction:column; 
+      gap:15px; 
+    }
+    input { 
+      padding:12px; 
+      border:1px solid #555; 
+      border-radius:8px; 
+      background:#222; 
+      color:#eee; 
+    }
+    input::placeholder { 
+      color:#aaa; 
+    }
+    button { 
+      background:#ff4da6; 
+      color:#fff; 
+      border:none; 
+      padding:12px; 
+      border-radius:25px; 
+      cursor:pointer; 
+      transition:0.3s; 
+    }
+    button:hover { 
+      background:#ff3399; 
+    }
+    footer { 
+      text-align:center; 
+      padding:20px; 
+      background:#000; 
+      color:#999; 
+      margin-top:40px; 
+    }
   </style>
 </head>
 <body>
@@ -34,8 +96,11 @@
   </div>
   <footer>&copy; 2025 Aura Clothing</footer>
   <script>
-    document.getElementById("productName").innerText = localStorage.getItem("product");
-    document.getElementById("productPrice").innerText = localStorage.getItem("price");
+    // Auto-fill product from localStorage
+    document.getElementById("productName").innerText = localStorage.getItem("product") || "No item selected";
+    document.getElementById("productPrice").innerText = localStorage.getItem("price") || "";
+    
+    // Save customer name and move to payment page
     function proceed(e){
       e.preventDefault();
       localStorage.setItem("customer", document.getElementById("name").value);
