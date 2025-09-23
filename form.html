@@ -3,30 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cart & Checkout - Aura</title>
+<title>Your Cart - Aura</title>
 <style>
-body{font-family:Poppins,sans-serif;margin:0;background:#111;color:#eee;}
-header{background:#000;padding:20px;text-align:center;box-shadow:0 2px 5px rgba(255,77,166,0.3);}
-h1{margin:0;color:#ff4da6;}
-.container{max-width:600px;margin:40px auto;background:#1a1a1a;padding:30px;border-radius:10px;box-shadow:0 2px 8px rgba(255,77,166,0.3);}
-.product{margin-bottom:15px;padding:10px;border:1px solid #333;border-radius:8px;background:#000;}
-.product h3{margin:0;color:#ff4da6;}
-.product p{margin:5px 0;color:#ccc;}
-form{display:flex;flex-direction:column;gap:15px;}
-input{padding:12px;border:1px solid #555;border-radius:8px;background:#222;color:#eee;}
-input::placeholder{color:#aaa;}
-button{background:#ff4da6;color:#fff;border:none;padding:12px;border-radius:25px;cursor:pointer;transition:0.3s;}
-button:hover{background:#ff3399;}
-.total{font-weight:bold;text-align:right;color:#ff4da6;margin-top:10px;}
-footer{text-align:center;padding:20px;background:#000;color:#999;margin-top:40px;}
+body {font-family:Poppins,sans-serif; margin:0; background:#111; color:#eee;}
+header {background:#000; padding:20px; text-align:center; box-shadow:0 2px 5px rgba(255,77,166,0.3);}
+header h1 {margin:0; color:#ff4da6;}
+.container {max-width:700px; margin:40px auto; background:#1a1a1a; padding:30px; border-radius:10px; box-shadow:0 2px 8px rgba(255,77,166,0.3);}
+.cart-item {display:flex; gap:15px; margin-bottom:15px; align-items:center; border-bottom:1px solid #333; padding-bottom:10px;}
+.cart-item img {width:80px; height:80px; object-fit:cover; border-radius:8px;}
+.cart-item h3 {margin:0; color:#ff4da6; font-size:1rem;}
+.cart-item p {margin:0; font-size:0.9rem;}
+.total {text-align:right; font-size:1.2rem; margin:20px 0; color:#ff4da6; font-weight:bold;}
+form {display:flex; flex-direction:column; gap:15px;}
+input {padding:12px; border:1px solid #333; border-radius:8px; background:#222; color:#eee;}
+input::placeholder {color:#bbb;}
+button {background:#ff4da6; color:#fff; border:none; padding:12px; border-radius:25px; cursor:pointer; transition:0.3s;}
+button:hover {background:#ff3399;}
+footer {text-align:center; padding:20px; background:#000; color:#999; margin-top:40px;}
 </style>
 </head>
 <body>
-<header><h1>Cart & Checkout</h1></header>
+<header><h1>Your Cart</h1></header>
 <div class="container">
   <div id="cartItems"></div>
   <div class="total" id="totalPrice"></div>
-  <form onsubmit="proceed(event)">
+  <form id="customerForm">
     <input type="text" id="name" placeholder="Full Name" required>
     <input type="email" id="email" placeholder="Email" required>
     <input type="text" id="address" placeholder="Address" required>
@@ -37,26 +38,36 @@ footer{text-align:center;padding:20px;background:#000;color:#999;margin-top:40px
 
 <script>
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
-let cartDiv = document.getElementById('cartItems');
+const cartContainer = document.getElementById('cartItems');
+const totalEl = document.getElementById('totalPrice');
 let total = 0;
 
-cart.forEach((item,i)=>{
-  let div = document.createElement('div');
-  div.className='product';
-  div.innerHTML=`<h3>${item.name}</h3><p>$${item.price}</p>`;
-  cartDiv.appendChild(div);
-  total += item.price;
-});
-document.getElementById('totalPrice').innerText='Total: $'+total;
-
-function proceed(e){
-  e.preventDefault();
-  localStorage.setItem('customer',document.getElementById('name').value);
-  localStorage.setItem('email',document.getElementById('email').value);
-  localStorage.setItem('address',document.getElementById('address').value);
-  localStorage.setItem('total', total);
-  window.location.href='payment.html';
+if(cart.length === 0){
+    cartContainer.innerHTML = "<p>Your cart is empty.</p>";
+} else {
+    cart.forEach(item => {
+        total += item.price;
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <img src="${item.img}" alt="${item.name}">
+          <div>
+            <h3>${item.name}</h3>
+            <p>$${item.price}</p>
+          </div>
+        `;
+        cartContainer.appendChild(div);
+    });
 }
+
+totalEl.innerText = `Total: $${total}`;
+
+document.getElementById('customerForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    localStorage.setItem('customer', document.getElementById('name').value);
+    localStorage.setItem('total', total);
+    window.location.href = 'payment.html';
+});
 </script>
 </body>
 </html>
