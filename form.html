@@ -1,111 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Cart - Aura</title>
-  <style>
-    body { 
-      font-family:Poppins,sans-serif; 
-      margin:0; 
-      background:#111; 
-      color:#eee; 
-    }
-    header { 
-      background:#000; 
-      padding:20px; 
-      text-align:center; 
-      box-shadow:0 2px 5px rgba(255,77,166,0.3); 
-    }
-    h1 { 
-      margin:0; 
-      color:#ff4da6; 
-    }
-    .container { 
-      max-width:500px; 
-      margin:40px auto; 
-      background:#1a1a1a; 
-      padding:30px; 
-      border-radius:10px; 
-      box-shadow:0 2px 8px rgba(255,77,166,0.3); 
-    }
-    .product { 
-      margin-bottom:20px; 
-      padding:15px; 
-      border:1px solid #333; 
-      border-radius:8px; 
-      background:#000; 
-    }
-    .product h3 { 
-      margin:0; 
-      color:#ff4da6; 
-    }
-    .product p { 
-      margin:5px 0 0; 
-      color:#ccc; 
-    }
-    form { 
-      display:flex; 
-      flex-direction:column; 
-      gap:15px; 
-    }
-    input { 
-      padding:12px; 
-      border:1px solid #555; 
-      border-radius:8px; 
-      background:#222; 
-      color:#eee; 
-    }
-    input::placeholder { 
-      color:#aaa; 
-    }
-    button { 
-      background:#ff4da6; 
-      color:#fff; 
-      border:none; 
-      padding:12px; 
-      border-radius:25px; 
-      cursor:pointer; 
-      transition:0.3s; 
-    }
-    button:hover { 
-      background:#ff3399; 
-    }
-    footer { 
-      text-align:center; 
-      padding:20px; 
-      background:#000; 
-      color:#999; 
-      margin-top:40px; 
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart & Checkout - Aura</title>
+<style>
+body{font-family:Poppins,sans-serif;margin:0;background:#111;color:#eee;}
+header{background:#000;padding:20px;text-align:center;box-shadow:0 2px 5px rgba(255,77,166,0.3);}
+h1{margin:0;color:#ff4da6;}
+.container{max-width:600px;margin:40px auto;background:#1a1a1a;padding:30px;border-radius:10px;box-shadow:0 2px 8px rgba(255,77,166,0.3);}
+.product{margin-bottom:15px;padding:10px;border:1px solid #333;border-radius:8px;background:#000;}
+.product h3{margin:0;color:#ff4da6;}
+.product p{margin:5px 0;color:#ccc;}
+form{display:flex;flex-direction:column;gap:15px;}
+input{padding:12px;border:1px solid #555;border-radius:8px;background:#222;color:#eee;}
+input::placeholder{color:#aaa;}
+button{background:#ff4da6;color:#fff;border:none;padding:12px;border-radius:25px;cursor:pointer;transition:0.3s;}
+button:hover{background:#ff3399;}
+.total{font-weight:bold;text-align:right;color:#ff4da6;margin-top:10px;}
+footer{text-align:center;padding:20px;background:#000;color:#999;margin-top:40px;}
+</style>
 </head>
 <body>
-  <header><h1>Your Cart</h1></header>
-  <div class="container">
-    <div class="product">
-      <h3 id="productName"></h3>
-      <p id="productPrice"></p>
-    </div>
-    <form onsubmit="proceed(event)">
-      <input type="text" id="name" placeholder="Full Name" required>
-      <input type="email" id="email" placeholder="Email" required>
-      <input type="text" id="address" placeholder="Address" required>
-      <button type="submit">Proceed to Payment</button>
-    </form>
-  </div>
-  <footer>&copy; 2025 Aura Clothing</footer>
-  <script>
-    // Auto-fill product from localStorage
-    document.getElementById("productName").innerText = localStorage.getItem("product") || "No item selected";
-    document.getElementById("productPrice").innerText = localStorage.getItem("price") || "";
-    
-    // Save customer name and move to payment page
-    function proceed(e){
-      e.preventDefault();
-      localStorage.setItem("customer", document.getElementById("name").value);
-      window.location.href="payment.html";
-    }
-  </script>
+<header><h1>Cart & Checkout</h1></header>
+<div class="container">
+  <div id="cartItems"></div>
+  <div class="total" id="totalPrice"></div>
+  <form onsubmit="proceed(event)">
+    <input type="text" id="name" placeholder="Full Name" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="text" id="address" placeholder="Address" required>
+    <button type="submit">Proceed to Payment</button>
+  </form>
+</div>
+<footer>&copy; 2025 Aura Clothing</footer>
+
+<script>
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let cartDiv = document.getElementById('cartItems');
+let total = 0;
+
+cart.forEach((item,i)=>{
+  let div = document.createElement('div');
+  div.className='product';
+  div.innerHTML=`<h3>${item.name}</h3><p>$${item.price}</p>`;
+  cartDiv.appendChild(div);
+  total += item.price;
+});
+document.getElementById('totalPrice').innerText='Total: $'+total;
+
+function proceed(e){
+  e.preventDefault();
+  localStorage.setItem('customer',document.getElementById('name').value);
+  localStorage.setItem('email',document.getElementById('email').value);
+  localStorage.setItem('address',document.getElementById('address').value);
+  localStorage.setItem('total', total);
+  window.location.href='payment.html';
+}
+</script>
 </body>
 </html>
