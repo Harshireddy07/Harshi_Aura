@@ -3,35 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkout - Aura</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Payment - Aura</title>
+  <style>
+    body { font-family:Poppins,sans-serif; margin:0; background:#f9f9f9; }
+    header { background:#fff; padding:20px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
+    h1 { margin:0; color:#ff4da6; }
+    .container { max-width:400px; margin:40px auto; background:#fff; padding:30px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+    form { display:flex; flex-direction:column; gap:15px; }
+    input { padding:12px; border:1px solid #ccc; border-radius:8px; }
+    button { background:#ff4da6; color:#fff; border:none; padding:12px; border-radius:25px; cursor:pointer; }
+    button:hover { background:#ff3399; }
+    footer { text-align:center; padding:20px; background:#333; color:#fff; margin-top:40px; }
+  </style>
 </head>
 <body>
-  <header>
-    <div class="logo">Aura</div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="form.html">Sign Up</a></li>
-        <li><a href="payment.html">Checkout</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <section class="form-section">
-    <h2>Payment Details</h2>
-    <form onsubmit="event.preventDefault(); window.location.href='thankyou.html';">
-      <input type="text" placeholder="Full Name" required>
-      <input type="text" placeholder="Address" required>
+  <header><h1>Payment</h1></header>
+  <div class="container">
+    <form onsubmit="pay(event)">
       <input type="text" placeholder="Card Number" required>
       <input type="text" placeholder="Expiry Date" required>
       <input type="text" placeholder="CVV" required>
-      <button type="submit">Pay Now</button>
+      <button type="submit">Proceed to Pay</button>
     </form>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Aura Clothing</p>
-  </footer>
+  </div>
+  <footer>&copy; 2025 Aura Clothing</footer>
+  <script>
+    function pay(e){
+      e.preventDefault();
+      window.location.href="thankyou.html";
+    }
+  </script>
 </body>
 </html>
